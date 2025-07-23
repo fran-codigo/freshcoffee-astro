@@ -7,7 +7,10 @@ const { title = '' }: Props = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html
+  lang="es"
+  class="h-full bg-white"
+>
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -25,7 +28,7 @@ const { title = '' }: Props = Astro.props;
     />
     <title>Fresh Coffee - {title}</title>
   </head>
-  <body>
+  <body class="h-full">
     <slot />
   </body>
 </html>
