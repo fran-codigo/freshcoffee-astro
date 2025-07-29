@@ -1,6 +1,8 @@
 ---
-import { Picture } from 'astro:assets';
-import type { Product } from '@/types';
+import { Picture } from "astro:assets";
+import PriceWithVariants from "@/components/products/PriceWithVariants.astro";
+import type { Product, ProductWithVariablePrice } from "@/types";
+import { formatCurrency } from "@/utils";
 
 interface Props {
   product: Product;
@@ -14,9 +16,19 @@ const { product } = Astro.props;
     alt={`Imagen de ${product.title.rendered}`}
     width={product.featured_images.full.width}
     height={product.featured_images.full.height}
-    formats={['webp', 'jpeg', 'avif']}
+    formats={["webp", "jpeg", "avif"]}
   />
   <div class="p-5">
     <h3 class="text-2xl font-black h-20">{product.title.rendered}</h3>
+
+    {
+      product.acf.variable_price ? (
+        <PriceWithVariants product={product as ProductWithVariablePrice} />
+      ) : (
+        <p class="mt-5 font-black text-amber-400 text-4xl">
+          {formatCurrency(product.acf.price)}
+        </p>
+      )
+    }
   </div>
 </div>

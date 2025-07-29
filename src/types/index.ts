@@ -14,6 +14,28 @@ const FeaturedImageSchema = z.object({
   full: ImageSchema,
 });
 
+const VariablePairSchema = z.object({
+  price: z.coerce.number(),
+  size: z.string(),
+});
+
+const variablePriceSchema = z.object({
+  variable_price: z.literal(true),
+  small: VariablePairSchema,
+  medium: VariablePairSchema,
+  large: VariablePairSchema,
+})
+
+const FixedPriceSchema = z.object({
+  variable_price: z.literal(false),
+  price: z.coerce.number(),
+})
+
+export const ProductPriceSchema = z.discriminatedUnion('variable_price', [
+  variablePriceSchema,
+  FixedPriceSchema,
+])
+
 const categorySchema = z.object({
   id: z.number(),
   name: z.string(),
@@ -34,7 +56,14 @@ const productSchema = z.object({
   }),
   featured_media: z.number(),
   featured_images: FeaturedImageSchema,
+  acf: ProductPriceSchema
 });
 
 export const ProductsSchema = z.array(productSchema);
 export type Product = z.infer<typeof productSchema>;
+
+const ProductWithVariablePriceSchema = productSchema.extend({
+  acf: variablePriceSchema,
+});
+
+export type ProductWithVariablePrice = z.infer<typeof ProductWithVariablePriceSchema>;
