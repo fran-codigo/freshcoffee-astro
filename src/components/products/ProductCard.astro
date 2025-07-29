@@ -3,6 +3,7 @@ import { Picture } from "astro:assets";
 import PriceWithVariants from "@/components/products/PriceWithVariants.astro";
 import type { Product, ProductWithVariablePrice } from "@/types";
 import { formatCurrency } from "@/utils";
+import AddProductButton from "./AddProductButton";
 
 interface Props {
   product: Product;
@@ -28,6 +29,7 @@ const { product } = Astro.props;
         <p class="mt-5 font-black text-amber-400 text-4xl">
           {formatCurrency(product.acf.price)}
         </p>
+        <AddProductButton client:only="react"/>
       )
     }
   </div>
