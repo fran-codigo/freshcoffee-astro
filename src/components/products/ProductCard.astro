@@ -29,7 +29,14 @@ const { product } = Astro.props;
         <p class="mt-5 font-black text-amber-400 text-4xl">
           {formatCurrency(product.acf.price)}
         </p>
-        <AddProductButton client:only="react"/>
+        <AddProductButton 
+        client:only="react" 
+        product={{
+          id: product.id, 
+          name: product.title.rendered, 
+          price: product.acf.price
+        }} 
+        />
       )
     }
   </div>
