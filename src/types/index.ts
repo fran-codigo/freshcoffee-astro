@@ -68,6 +68,7 @@ const ProductWithVariablePriceSchema = productSchema.extend({
 
 export type ProductWithVariablePrice = z.infer<typeof ProductWithVariablePriceSchema>;
 
+// * Orders - Client
 const SelectedProductSchema = z.object({
   id: z.number(),
   name: z.string(),
@@ -76,3 +77,12 @@ const SelectedProductSchema = z.object({
 })
 
 export type SelectedProduct = z.infer<typeof SelectedProductSchema>;
+
+
+const OrderItemSchema = SelectedProductSchema.extend({
+  quantity: z.number(),
+  subtotal: z.number(),
+  key: z.optional(z.string())
+})
+
+export type OrderItem = z.infer<typeof OrderItemSchema>;

@@ -1,11 +1,13 @@
+import { useOrderStore } from "@/stores/order";
 import type { SelectedProduct } from "@/types";
 
 type Props = {
   product: SelectedProduct;
 };
 export default function AddProductButton({ product }: Props) {
+  const { addItem } = useOrderStore();
   const handleClick = () => {
-    console.log(product);
+    addItem(product);
   };
   return (
     <button
