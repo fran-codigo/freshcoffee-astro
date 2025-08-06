@@ -1,6 +1,7 @@
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useOrderStore } from '@/stores/order';
+import OrderContents from './OrderContents';
 
 export default function OrderDrawer() {
   const { isOrderDrawerOpen, toggleOrderDrawer } = useOrderStore();
@@ -37,7 +38,7 @@ export default function OrderDrawer() {
                     </div>
                   </div>
                   <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                    {/* OrderContents aquí */}
+                    <OrderContents />
                   </div>
                 </div>
               </DialogPanel>
