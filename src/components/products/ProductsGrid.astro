@@ -1,6 +1,7 @@
 ---
-import { ProductsSchema } from '@/types';
-import ProductCard from '@/components/products/ProductCard.astro';
+import { ProductsSchema } from "@/types";
+import ProductCard from "@/components/products/ProductCard.astro";
+import ShowOrderItem from "../order/ShowOrderItem";
 
 const { category } = Astro.params;
 
@@ -11,7 +12,10 @@ const products = ProductsSchema.parse(json);
 console.log(products);
 ---
 
-<div class=""></div>
+<div class="flex justify-between items-center">
+  <h1 class="text-2xl my-10">Elige y Personaliza tu pedido a continuación</h1>
+  <ShowOrderItem client:only="react" />
+</div>
 
 <div
   class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 items-stretch"
