@@ -14,7 +14,6 @@ export default function OrderContents() {
 
             {
               order.map(item => {
-
                 return (
                   <ProductDetails item={item} />
                 )
